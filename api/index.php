@@ -8,6 +8,19 @@ $router->add("GET", "/api/ping", function () {
     require __DIR__ . "/routes/ping.php";
 });
 
+$router->add("POST", "/contratos", function () {
+    require __DIR__ . "/routes/contratos_create.php";
+});
+
+$router->add("POST", "/parcelas", function () {
+    require __DIR__ . "/routes/parcelas_create.php";
+});
+
+$router->add("GET", "/parcelas/{numero}", function ($params) {
+    require __DIR__ . "/routes/parcelas_list.php";
+});
+
+
 // Aqui você adicionaria outras rotas no futuro:
 // $router->add("POST", "/api/login", ...etc);
 
