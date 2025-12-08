@@ -8,15 +8,15 @@ $router->add("GET", "/api/ping", function () {
     require __DIR__ . "/routes/ping.php";
 });
 
-$router->add("POST", "/contratos", function () {
+$router->add("POST", "/api/contratos", function () {
     require __DIR__ . "/routes/contratos_create.php";
 });
 
-$router->add("POST", "/parcelas", function () {
+$router->add("POST", "/api/parcelas", function () {
     require __DIR__ . "/routes/parcelas_create.php";
 });
 
-$router->add("GET", "/parcelas/{numero}", function ($params) {
+$router->add("GET", "/api/parcelas/{numero}", function ($params) {
     require __DIR__ . "/routes/parcelas_list.php";
 });
 
