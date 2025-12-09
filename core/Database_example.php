@@ -11,9 +11,9 @@ class Database {
         }
 
         $host = "localhost";
-        $dbname = "javabanco";
-        $user = "API";
-        $pass = "123";
+        $dbname = "nome do banco";
+        $user = "nome do usuario";
+        $pass = "nome da senha";
 
         $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 
@@ -21,13 +21,13 @@ class Database {
             self::$instance = new PDO($dsn, $user, $pass, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,  
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, 
-                PDO::ATTR_PERSISTENT => false,             
+                PDO::ATTR_PERSISTENT => false,                
             ]);
 
             return self::$instance;
 
         } catch (PDOException $e) {
-            
+        
             Response::error("Falha ao conectar ao banco: " . $e->getMessage(), 500);
         }
     }
