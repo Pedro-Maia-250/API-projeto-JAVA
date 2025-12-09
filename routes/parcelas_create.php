@@ -3,33 +3,31 @@
 require_once __DIR__ . "/../core/Database.php";
 require_once __DIR__ . "/../core/Response.php";
 
-$conn = $db->getConnection();
+$db = Database::connect();
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-if (!isset($data["numero"], $data["parcelas"])) {
+if (!isset($data["numero"], $data["valor"], $data["datap"], $data["statusp"])) {
     Response::json(["error" => true, "message" => "Dados incompletos"], 400);
 }
 
 $numero = $data["numero"];
-$parcelas = $data["parcelas"]; // array gerado pelo seu JAVA
 
 try {
-    foreach ($parcelas as $p) {
-        $stmt = $conn->prepare("
-            INSERT INTO parcelas(numero, valor, datap, statusp)
-            VALUES (?, ?, ?, ?)
-        ");
+    
+    $stmt = $db->prepare("
+        INSERT INTO parcelas(numero, valor, datap, statusp)
+        VALUES (?, ?, ?, ?)
+    ");
 
-        $stmt->execute([
-            $numero,
-            $p["valor"],
-            $p["datap"],
-            $p["statusp"]
-        ]);
-    }
+    $stmt->execute([
+        $numero,
+        $data["valor"],
+        $data["datap"],
+        $data["statusp"]
+    ]);
 
-    Response::json(["success" => true, "message" => "Parcelas inseridas"]);
+    Response::json(["success" => true, "message" => "Parcelas inseridas"], 200);
 } catch (Exception $e) {
     Response::json(["error" => true, "message" => $e->getMessage()], 500);
 }

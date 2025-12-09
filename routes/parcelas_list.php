@@ -3,13 +3,10 @@
 require_once __DIR__ . "/../core/Database.php";
 require_once __DIR__ . "/../core/Response.php";
 
-$conn = $db->getConnection();
-
-// parâmetro vindo da rota
-$numero = $params["numero"];
+$db = Database::connect();
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM parcelas WHERE numero = ?");
+    $stmt = $db->prepare("SELECT * FROM parcelas WHERE numero = ?");
     $stmt->execute([$numero]);
 
     $parcelas = $stmt->fetchAll(PDO::FETCH_ASSOC);

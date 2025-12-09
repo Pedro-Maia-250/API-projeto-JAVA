@@ -16,12 +16,9 @@ $router->add("POST", "/api/parcelas", function () {
     require __DIR__ . "/routes/parcelas_create.php";
 });
 
-$router->add("GET", "/api/parcelas/{numero}", function ($params) {
+$router->add("GET", "/api/parcelas/{numero}", function ($numero) {
     require __DIR__ . "/routes/parcelas_list.php";
 });
 
-
-// Aqui você adicionaria outras rotas no futuro:
-// $router->add("POST", "/api/login", ...etc);
 
 $router->run();

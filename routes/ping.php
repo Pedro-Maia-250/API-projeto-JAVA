@@ -1,10 +1,8 @@
 <?php
 require_once __DIR__ . "/../core/Database.php";
 
-// Testa a conexão
 $db = Database::connect();
 
-// Se chegou aqui, a conexão funcionou
 Response::json([
     "status" => "ok",
     "message" => "API funcionando",
