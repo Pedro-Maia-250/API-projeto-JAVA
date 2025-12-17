@@ -13,7 +13,7 @@ class Database {
         $host = "localhost";
         $dbname = "nome do banco";
         $user = "nome do usuario";
-        $pass = "nome da senha";
+        $pass = "senha";
 
         $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 

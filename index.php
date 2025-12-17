@@ -1,5 +1,32 @@
 <?php
+require_once __DIR__ . "/core/Database.php";
+require_once __DIR__ . "/core/Response.php";
 require_once __DIR__ . "/core/Router.php";
+
+$apiKey = $_SERVER['HTTP_X_API_KEY'] ?? null;
+
+if (!$apiKey) {
+    Response::error("API Key não fornecida", 401);
+    exit;
+}
+
+$db = Database::connect();
+
+$stmt = $db->prepare("
+    SELECT id 
+    FROM api_keys 
+    WHERE api_key = :key AND ativo = 1
+    LIMIT 1
+");
+
+$stmt->execute([
+    ':key' => $apiKey
+]);
+
+if ($stmt->rowCount() === 0) {
+    Response::error("API Key inválida ou inativa", 401);
+    exit;
+}
 
 $router = new Router();
 
