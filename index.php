@@ -34,6 +34,10 @@ $router = new Router();
 $router->add("GET", "/api/ping", function () {
     require __DIR__ . "/routes/ping.php";
 });
+
+$router->add("POST", "/api/string/t", function () {
+    require __DIR__ . "/routes/contar_string.php";
+});
 /*
 $router->add("POST", "/api/contratos", function () {
     require __DIR__ . "/routes/contratos_create.php";
