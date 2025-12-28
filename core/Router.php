@@ -6,7 +6,6 @@ class Router {
     private $routes = [];
 
     public function add($method, $path, $callback) {
-        // Converte /contratos/{numero} → regex
         $regex = preg_replace('#\{[a-zA-Z_]+\}#', '([a-zA-Z0-9_-]+)', $path);
         $regex = '#^' . $regex . '$#';
 
